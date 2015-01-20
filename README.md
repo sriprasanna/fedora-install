@@ -26,7 +26,7 @@ This is just a reminder repository for myself on how to install Fedora on some o
     sudo yum install -y gnome-tweak-tool gimp rawtherapee calibre deja-dup
     sudo yum install -y http://s.insynchq.com/builds/insync-1.1.3.32034-1.x86_64.rpm
     sudo yum install -y https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.rpm
-    sudo yum install -y https://atom.io/download/rpm
+    sudo yum install -y https://github.com/atom/atom/releases/download/v0.174.0/atom.x86_64.rpm
     git clone https://github.com/sstephenson/rbenv.git ~/.rbenv && git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
     git clone git://github.com/eonpatapon/gnome-shell-extension-caffeine.git && mkdir -p ~/.local/share/gnome-shell/extensions && cp -r gnome-shell-extension-caffeine/caffeine@patapon.info ~/.local/share/gnome-shell/extensions && rm -rf gnome-shell-extension-caffeine
 
