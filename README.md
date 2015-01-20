@@ -3,9 +3,8 @@ Fedora Configuration
 
 This is just a reminder repository for myself on how to install Fedora on some of my current setup while I don't create an Ansible playbook.
 
-### COMMON: Update packages and install yum plugin
-    sudo yum update -y
-    sudo yum install -y yum-plugin-fastestmirror
+### COMMON: Update packages
+    sudo dnf distro-sync -y
 
 ### COMMON: Install Fedy
     su -c "curl https://satya164.github.io/fedy/fedy-installer -o fedy-installer && chmod +x fedy-installer && ./fedy-installer"
@@ -14,25 +13,34 @@ This is just a reminder repository for myself on how to install Fedora on some o
     sudo fedy -e rpmfusion_repos font_rendering google_chrome google_talkplugin adobe_flash media_codecs numix_themes config_selinux disk_io_scheduler
 
 ### COMMON: Install base packages
-    sudo yum install -y @c-development
-    sudo yum install -y @development-tools
-    sudo yum install -y @container-management
-    sudo yum install -y @system-tools
-    sudo yum install -y kernel-devel
-    sudo yum install -y python-devel python-pip python-virtualenv
+    sudo dnf install -y @c-development
+    sudo dnf install -y @development-tools
+    sudo dnf install -y @container-management
+    sudo dnf install -y @system-tools
+    sudo dnf install -y kernel-devel
+    sudo dnf install -y python-devel python-pip python-virtualenv
 
 ### COMMON: Install additional software
-    sudo yum install -y htop iotop lm_sensors mercurial smartmontools unrar autojump ansible go java-1.8.0-openjdk ddclient
-    sudo yum install -y gnome-tweak-tool gimp rawtherapee calibre deja-dup texlive-scheme-small VirtualBox akmod-VirtualBox
-    sudo yum install -y http://s.insynchq.com/builds/insync-1.1.3.32034-1.x86_64.rpm              # installs repo
-    sudo yum install -y https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.rpm         # no repo
-    sudo yum install -y https://github.com/atom/atom/releases/download/v0.174.0/atom.x86_64.rpm   # no repo
+    sudo dnf install -y htop iotop lm_sensors mercurial smartmontools unrar autojump ansible go java-1.8.0-openjdk ddclient
+    sudo dnf install -y gnome-tweak-tool gimp rawtherapee calibre deja-dup texlive-scheme-small VirtualBox akmod-VirtualBox
+    sudo dnf install -y http://s.insynchq.com/builds/insync-1.1.3.32034-1.x86_64.rpm              # installs repo
+    sudo dnf install -y https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.rpm         # no repo
+    sudo dnf install -y https://github.com/atom/atom/releases/download/v0.174.0/atom.x86_64.rpm   # no repo
     git clone https://github.com/sstephenson/rbenv.git ~/.rbenv && git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
     git clone git://github.com/eonpatapon/gnome-shell-extension-caffeine.git && mkdir -p ~/.local/share/gnome-shell/extensions && cp -r gnome-shell-extension-caffeine/caffeine@patapon.info ~/.local/share/gnome-shell/extensions && rm -rf gnome-shell-extension-caffeine
 
 ### MBP: Install specific software and config
-    export FIRMWARE_INSTALL_DIR="/lib/firmware" && wget http://www.lwfinger.com/b43-firmware/broadcom-wl-5.100.138.tar.bz2 && tar xjf broadcom-wl-5.100.138.tar.bz2 && sudo b43-fwcutter -w "$FIRMWARE_INSTALL_DIR" broadcom-wl-5.100.138/linux/wl_apsta.o && rm -rf broadcom-wl-5.100.138.tar.bz2 broadcom-wl-5.100.138
-    sudo yum install -y tlp tlp-rdw
+    sudo dnf install -y akmod-wl tlp tlp-rdw
+    sudo akmods
+    cat << EOF | sudo tee /etc/modprobe.d/blacklist.conf
+    blacklist bcm43xx
+    blacklist b43
+    blacklist b43legacy
+    blacklist bcma
+    blacklist brcmsmac
+    blacklist ssb
+    blacklist ndiswrapper
+    EOF
     sudo sed -i 's/^WIFI_PWR_ON_BAT=5/WIFI_PWR_ON_BAT=1/' /etc/default/tlp
     sudo cp files/60-synaptics.conf /etc/X11/xorg.conf.d
     sudo cp files/99-disable-apple-ir.rules /etc/udev/rules.d
@@ -40,7 +48,8 @@ This is just a reminder repository for myself on how to install Fedora on some o
     sudo grub2-mkconfig -o /etc/grub2-efi.cfg
 
 ### DESKTOP: Install specific software and config
-    sudo yum install -y akmod-nvidia
+    sudo dnf install -y akmod-nvidia
+    sudo akmods
     sudo cp files/20-nvidia.conf /etc/X11/xorg.conf.d
 
 ### COMMON: Enable additional services
@@ -96,3 +105,4 @@ This is just a reminder repository for myself on how to install Fedora on some o
 
 ### COMMON: Cleanup
     sudo fedy -e rem_oldkernels
+    sudo dnf autoerase
