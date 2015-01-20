@@ -49,7 +49,6 @@ This is just a reminder repository for myself on how to install Fedora on some o
 
 ### DESKTOP: Install specific software and config
     sudo yum install -y kmod-nvidia
-
     sudo cp files/20-nvidia.conf /etc/X11/xorg.conf.d
 
 ### COMMON: Enable additional services
