@@ -23,7 +23,7 @@ This is just a reminder repository for myself on how to install Fedora on some o
 
 ### COMMON: Install additional software
     sudo yum install -y htop iotop lm_sensors mercurial smartmontools unrar autojump ansible go java-1.8.0-openjdk ddclient
-    sudo yum install -y gnome-tweak-tool gimp rawtherapee calibre deja-dup texlive-scheme-small
+    sudo yum install -y gnome-tweak-tool gimp rawtherapee calibre deja-dup texlive-scheme-small VirtualBox akmod-VirtualBox
     sudo yum install -y http://s.insynchq.com/builds/insync-1.1.3.32034-1.x86_64.rpm
     sudo yum install -y https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.rpm
     sudo yum install -y https://github.com/atom/atom/releases/download/v0.174.0/atom.x86_64.rpm
