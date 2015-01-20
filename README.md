@@ -36,6 +36,8 @@ This is just a reminder repository for myself on how to install Fedora on some o
     echo 'options hid_apple fnmode=2' | sudo tee /etc/modprobe.d/hid_apple.conf
     sudo cp files/60-synaptics.conf /etc/X11/xorg.conf.d
     sudo cp files/99-disable-apple-ir.rules /etc/udev/rules.d
+    sudo sed -i '/^GRUB_CMDLINE_LINUX=/ s/rhgb/i915.modeset=1 i915.enable_rc6=1 i915.enable_fbc=0 i915.lvds_downclock=1 i915.semaphores=1 libata.force=1:noncq irqpoll rhgb/' /etc/default/grub
+    sudo grub2-mkconfig -o /etc/grub2-efi.cfg
 
 ### DESKTOP: Install specific software and config
     sudo yum install -y akmod-nvidia
