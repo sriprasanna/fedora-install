@@ -31,7 +31,8 @@ This is just a reminder repository for myself on how to install Fedora on some o
     git clone git://github.com/eonpatapon/gnome-shell-extension-caffeine.git && mkdir -p ~/.local/share/gnome-shell/extensions && cp -r gnome-shell-extension-caffeine/caffeine@patapon.info ~/.local/share/gnome-shell/extensions && rm -rf gnome-shell-extension-caffeine
 
 ### MBP: Install specific software and config
-    sudo yum install -y akmod-wl tlp tlp-rdw
+    export FIRMWARE_INSTALL_DIR="/lib/firmware" && wget http://www.lwfinger.com/b43-firmware/broadcom-wl-5.100.138.tar.bz2 && tar xjf broadcom-wl-5.100.138.tar.bz2 && sudo b43-fwcutter -w "$FIRMWARE_INSTALL_DIR" broadcom-wl-5.100.138/linux/wl_apsta.o && rm -rf broadcom-wl-5.100.138.tar.bz2 broadcom-wl-5.100.138
+    sudo yum install -y tlp tlp-rdw
     sudo sed -i 's/^WIFI_PWR_ON_BAT=5/WIFI_PWR_ON_BAT=1/' /etc/default/tlp
     echo 'options hid_apple fnmode=2' | sudo tee /etc/modprobe.d/hid_apple.conf
     sudo cp files/60-synaptics.conf /etc/X11/xorg.conf.d
