@@ -23,7 +23,7 @@ This is just a reminder repository for myself on how to install Fedora on some o
 
 ### COMMON: Install additional software
     sudo yum install -y htop iotop lm_sensors mercurial smartmontools unrar autojump ansible go java-1.8.0-openjdk ddclient
-    sudo yum install -y gnome-tweak-tool gimp rawtherapee calibre deja-dup texlive-scheme-small VirtualBox kmod-VirtualBox
+    sudo yum install -y gnome-tweak-tool gimp rawtherapee calibre deja-dup texlive-scheme-small VirtualBox akmod-VirtualBox
     sudo yum install -y http://s.insynchq.com/builds/insync-1.1.3.32034-1.x86_64.rpm              # installs repo
     sudo yum install -y https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.rpm         # no repo
     sudo yum install -y https://github.com/atom/atom/releases/download/v0.174.0/atom.x86_64.rpm   # no repo
@@ -31,7 +31,7 @@ This is just a reminder repository for myself on how to install Fedora on some o
     git clone git://github.com/eonpatapon/gnome-shell-extension-caffeine.git && mkdir -p ~/.local/share/gnome-shell/extensions && cp -r gnome-shell-extension-caffeine/caffeine@patapon.info ~/.local/share/gnome-shell/extensions && rm -rf gnome-shell-extension-caffeine
 
 ### MBP: Install specific software and config
-    sudo yum install -y kmod-wl tlp tlp-rdw
+    sudo yum install -y akmod-wl tlp tlp-rdw
     cat << EOF | sudo tee /etc/modprobe.d/blacklist.conf
     blacklist bcm43xx
     blacklist b43
@@ -48,7 +48,7 @@ This is just a reminder repository for myself on how to install Fedora on some o
     sudo grub2-mkconfig -o /etc/grub2-efi.cfg
 
 ### DESKTOP: Install specific software and config
-    sudo yum install -y kmod-nvidia
+    sudo yum install -y akmod-nvidia
     sudo cp files/20-nvidia.conf /etc/X11/xorg.conf.d
 
 ### COMMON: Enable additional services
@@ -102,6 +102,7 @@ This is just a reminder repository for myself on how to install Fedora on some o
 ### COMMON: Atom packages
     apm install solarized-dark-ui autocomplete-plus autocomplete-paths atom-terminal sort-lines
 
-### COMMON: Cleanup
+### COMMON: Finishing steps and cleanup
+    sudo akmods --force
     sudo fedy -e rem_oldkernels
     sudo yum autoremove -y
