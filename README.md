@@ -3,6 +3,10 @@ Fedora Configuration
 
 This is just a reminder repository for myself on how to install Fedora on some of my current setup while I don't create an Ansible playbook.
 
+### COMMON: Remove the need to enter sudo password
+    sudo sed -i 's/^#\s*\(%wheel\s\+ALL=(ALL)\s\+NOPASSWD:\s\+ALL\)/\1/' /etc/sudoers
+    sudo sed -i 's/^\s*\(%wheel\s\+ALL=(ALL)\s\+ALL\)/# \1/' /etc/sudoers
+
 ### COMMON: Update packages and install yum plugin
     sudo yum update -y
     sudo yum install -y yum-plugin-fastestmirror
