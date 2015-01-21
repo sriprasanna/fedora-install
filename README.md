@@ -18,8 +18,7 @@ This is just a reminder repository for myself on how to install Fedora on some o
     sudo fedy -e rpmfusion_repos font_rendering google_chrome google_talkplugin media_codecs numix_themes config_selinux disk_io_scheduler
 
 ### COMMON: Install base packages
-    sudo yum install -y @c-development @development-tools @container-management @system-tools
-    sudo yum install -y kernel-devel
+    sudo yum install -y @c-development @development-tools @container-management @system-tools kernel-devel
     sudo yum install -y python-devel python-pip python-virtualenv
 
 ### COMMON: Install additional software
