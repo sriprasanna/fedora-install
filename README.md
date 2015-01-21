@@ -12,21 +12,18 @@ This is just a reminder repository for myself on how to install Fedora on some o
     sudo yum install -y yum-plugin-fastestmirror
 
 ### COMMON: Install Fedy
-    su -c "curl https://satya164.github.io/fedy/fedy-installer -o fedy-installer && chmod +x fedy-installer && ./fedy-installer"
+    sudo sh -c "curl https://satya164.github.io/fedy/fedy-installer -o fedy-installer && chmod +x fedy-installer && ./fedy-installer"
 
 ### COMMON: Run select Fedy tasks
-    sudo fedy -e rpmfusion_repos font_rendering google_chrome google_talkplugin adobe_flash media_codecs numix_themes config_selinux disk_io_scheduler
+    sudo fedy -e rpmfusion_repos font_rendering google_chrome google_talkplugin media_codecs numix_themes config_selinux disk_io_scheduler
 
 ### COMMON: Install base packages
-    sudo yum install -y @c-development
-    sudo yum install -y @development-tools
-    sudo yum install -y @container-management
-    sudo yum install -y @system-tools
+    sudo yum install -y @c-development @development-tools @container-management @system-tools
     sudo yum install -y kernel-devel
     sudo yum install -y python-devel python-pip python-virtualenv
 
 ### COMMON: Install additional software
-    sudo yum install -y htop iotop lm_sensors mercurial smartmontools unrar autojump ansible go java-1.8.0-openjdk ddclient
+    sudo yum install -y htop iotop lm_sensors mercurial smartmontools unrar autojump ansible go ddclient
     sudo yum install -y gnome-tweak-tool gimp rawtherapee calibre deja-dup texlive-scheme-small VirtualBox akmod-VirtualBox
     sudo yum install -y http://s.insynchq.com/builds/insync-1.1.3.32034-1.x86_64.rpm              # installs repo
     sudo yum install -y https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.rpm         # no repo
