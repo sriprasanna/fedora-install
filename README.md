@@ -26,7 +26,7 @@ This is just a reminder repository for myself on how to install Fedora on some o
     sudo yum install -y python-devel python-pip python-virtualenv
 
 ### COMMON: Install additional software
-    sudo yum install -y htop iotop lm_sensors mercurial smartmontools unrar autojump ansible go java-1.8.0-openjdk ddclient
+    sudo yum install -y htop iotop lm_sensors mercurial smartmontools unrar autojump ansible go ddclient
     sudo yum install -y gnome-tweak-tool gimp rawtherapee calibre deja-dup texlive-scheme-small VirtualBox akmod-VirtualBox
     sudo yum install -y http://s.insynchq.com/builds/insync-1.1.3.32034-1.x86_64.rpm              # installs repo
     sudo yum install -y https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.rpm         # no repo
@@ -46,14 +46,73 @@ This is just a reminder repository for myself on how to install Fedora on some o
     blacklist ndiswrapper
     EOF
     sudo sed -i 's/^WIFI_PWR_ON_BAT=5/WIFI_PWR_ON_BAT=1/' /etc/default/tlp
-    sudo cp files/60-synaptics.conf /etc/X11/xorg.conf.d
-    sudo cp files/99-disable-apple-ir.rules /etc/udev/rules.d
-    sudo sed -i '/^GRUB_CMDLINE_LINUX=/ s/rhgb/i915.modeset=1 i915.enable_rc6=1 i915.enable_fbc=1 i915.lvds_downclock=1 i915.semaphores=1 libata.force=1:noncq hid_apple.fnmode=2 irqpoll rhgb/' /etc/default/grub
+    cat << EOF | sudo tee /etc/X11/xorg.conf.d/60-synaptics.conf
+    Section "InputClass"
+        Identifier "touchpad catchall"
+        Driver "synaptics"
+        MatchIsTouchpad "on"
+        MatchDevicePath "/dev/input/event*"
+        Option "SHMConfig" "on"
+        Option "PalmDetect" "on"
+        Option "PalmMinZ" "300"
+        Option "PalmMinWidth" "10"
+        Option "VertEdgeScroll" "off"
+        Option "HorizEdgeScroll" "off"
+        Option "CornerCoasting" "off"
+        Option "EdgeMotionUseAlways" "off"
+        Option "TapAndDragGesture" "off"
+        Option "HorizTwoFingerScroll" "1"
+        Option "VertScrollDelta" "200"
+        Option "HorizScrollDelta" "200"
+        Option "CoastingSpeed" "10"
+        Option "CoastingFriction" "10"
+        Option "ClickTime" "25"
+        Option "TouchpadOff" "0"
+        Option "FingerLow" "60"
+        Option "FingerHigh" "65"
+        Option "MinSpeed" "1"
+        Option "MaxSpeed" "1"
+        Option "AccelerationProfile" "2"
+        Option "ConstantDeceleration" "4"
+        Option "MaxTapTime" "200"
+        Option "MaxDoubleTapTime" "200"
+        Option "SingleTapTimeout" "100"
+        Option "MaxTapMove" "500"
+        Option "TapButton1" "1"
+        Option "TapButton2" "3"
+        Option "TapButton3" "2"
+    EndSection
+    EOF
+    cat << EOF | sudo tee /etc/udev/rules.d/99-disable-apple-ir.rules
+    ACTION=="add", ATTR{idVendor}=="05ac", ATTR{idProduct}=="8242", RUN+="/bin/sh -c 'echo 0 >/sys$DEVPATH/authorized'"
+    EOF
+    echo 'options hid_apple fnmode=2' | sudo tee /etc/modprobe.d/hid_apple.conf
+    sudo sed -i '/^GRUB_CMDLINE_LINUX=/ s/rhgb/i915.modeset=1 i915.enable_rc6=1 i915.enable_fbc=1 i915.lvds_downclock=1 i915.semaphores=1 libata.force=1:noncq irqpoll rhgb/' /etc/default/grub
     sudo grub2-mkconfig -o /etc/grub2-efi.cfg
 
 ### DESKTOP: Install specific software and config
     sudo yum install -y akmod-nvidia
-    sudo cp files/20-nvidia.conf /etc/X11/xorg.conf.d
+    cat << EOF | sudo tee /etc/X11/xorg.conf.d/20-nvidia.conf
+    Section "Device"
+        Identifier      "Device0"
+        Driver          "nvidia"
+        Option          "NoLogo" "true"
+        Option          "ModeDebug" "false"
+        Option          "Coolbits" "4"
+        Option          "TripleBuffer" "true"
+        Option          "TwinView" "false"
+        Option          "DynamicTwinView" "false"
+        Option          "Stereo" "0"
+        Option          "ExactModeTimingsDVI" "true"
+    EndSection
+
+    Section "Screen"
+        Identifier      "Screen0"
+        Device          "Device0"
+        Option          "VertRefresh" "DVI-I-2: 120; DVI-I-3: 60"
+        Option          "nvidiaXineramaInfoOrder" "DVI-I-2, DVI-I-3"
+    EndSection
+    EOF
 
 ### COMMON: Enable additional services
     sudo systemctl enable sshd
