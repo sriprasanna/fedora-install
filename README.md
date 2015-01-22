@@ -7,9 +7,8 @@ This is just a reminder repository for myself on how to install Fedora on some o
     sudo sed -i 's/^#\s*\(%wheel\s\+ALL=(ALL)\s\+NOPASSWD:\s\+ALL\)/\1/' /etc/sudoers
     sudo sed -i 's/^\s*\(%wheel\s\+ALL=(ALL)\s\+ALL\)/# \1/' /etc/sudoers
 
-### COMMON: Update packages and install yum plugin
-    sudo yum update -y
-    sudo yum install -y yum-plugin-fastestmirror
+### COMMON: Upgrade packages
+    sudo dnf upgrade -y
 
 ### COMMON: Install Fedy
     sudo sh -c "curl https://satya164.github.io/fedy/fedy-installer -o fedy-installer && chmod +x fedy-installer && ./fedy-installer"
@@ -18,20 +17,20 @@ This is just a reminder repository for myself on how to install Fedora on some o
     sudo fedy -e rpmfusion_repos font_rendering google_chrome google_talkplugin media_codecs numix_themes config_selinux disk_io_scheduler
 
 ### COMMON: Install base packages
-    sudo yum install -y @c-development @development-tools @container-management @system-tools kernel-devel
-    sudo yum install -y python-devel python-pip python-virtualenv
+    sudo dnf install -y --nogpgcheck @c-development @development-tools @container-management @system-tools kernel-devel
+    sudo dnf install -y --nogpgcheck python-devel python-pip python-virtualenv
 
 ### COMMON: Install additional software
-    sudo yum install -y htop iotop lm_sensors mercurial smartmontools unrar autojump ansible go ddclient
-    sudo yum install -y gnome-tweak-tool gimp rawtherapee calibre deja-dup texlive-scheme-small VirtualBox akmod-VirtualBox
-    sudo yum install -y http://s.insynchq.com/builds/insync-1.1.3.32034-1.x86_64.rpm              # installs repo
-    sudo yum install -y https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.rpm         # no repo
-    sudo dnf copr enable helber/atom && sudo yum install -y atom
+    sudo dnf install -y --nogpgcheck htop iotop lm_sensors mercurial smartmontools unrar autojump ansible go ddclient
+    sudo dnf install -y --nogpgcheck gnome-tweak-tool gimp rawtherapee calibre deja-dup texlive-scheme-small VirtualBox akmod-VirtualBox
+    sudo dnf install -y --nogpgcheck http://s.insynchq.com/builds/insync-1.1.3.32034-1.x86_64.rpm              # installs repo
+    sudo dnf install -y --nogpgcheck https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.rpm         # no repo
+    sudo dnf copr enable helber/atom && sudo dnf install -y --nogpgcheck atom
     git clone https://github.com/sstephenson/rbenv.git ~/.rbenv && git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
     git clone git://github.com/eonpatapon/gnome-shell-extension-caffeine.git && mkdir -p ~/.local/share/gnome-shell/extensions && cp -r gnome-shell-extension-caffeine/caffeine@patapon.info ~/.local/share/gnome-shell/extensions && rm -rf gnome-shell-extension-caffeine
 
 ### MBP: Install specific software and config
-    sudo yum install -y akmod-wl tlp tlp-rdw
+    sudo dnf install -y --nogpgcheck akmod-wl tlp tlp-rdw
     cat << EOF | sudo tee /etc/modprobe.d/blacklist.conf
     blacklist bcm43xx
     blacklist b43
@@ -87,7 +86,7 @@ This is just a reminder repository for myself on how to install Fedora on some o
     sudo grub2-mkconfig -o /etc/grub2-efi.cfg
 
 ### DESKTOP: Install specific software and config
-    sudo yum install -y akmod-nvidia
+    sudo dnf install -y --nogpgcheck akmod-nvidia
     cat << EOF | sudo tee /etc/X11/xorg.conf.d/20-nvidia.conf
     Section "Device"
         Identifier      "Device0"
@@ -164,4 +163,4 @@ This is just a reminder repository for myself on how to install Fedora on some o
 ### COMMON: Finishing steps and cleanup
     sudo akmods --force
     sudo fedy -e rem_oldkernels
-    sudo yum autoremove -y
+    sudo dnf autoerase -y
