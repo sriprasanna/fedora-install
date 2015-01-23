@@ -46,7 +46,7 @@ On local computer:
 
     # deja-dup
     dconf write /org/gnome/deja-dup/include-list "['/home/edgard']"
-    dconf write /org/gnome/deja-dup/exclude-list "['/home/edgard/.local/share/Trash', '/home/edgard/Downloads', '/home/edgard/Google Drive', '/home/edgard/VirtualBox VMs', '/home/edgard/.cache', '/home/edgard/.nv', '/home/edgard/.adobe', '/home/edgard/.macromedia']"
+    dconf write /org/gnome/deja-dup/exclude-list "['/home/edgard/.local/share/Trash', '/home/edgard/Downloads', '/home/edgard/Google Drive', '/home/edgard/VirtualBox VMs', '/home/edgard/.cache']"
     dconf write /org/gnome/deja-dup/backend "'file'"
     dconf write /org/gnome/deja-dup/file/path "'file:///home/edgard/Google%20Drive/Backups/lynxarc'"
     dconf write /org/gnome/deja-dup/delete-after 182
