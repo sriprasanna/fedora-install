@@ -41,8 +41,11 @@
 - name: optimize_disk_io_schedulers
   copy: src=60-io_schedulers.rules dest=/etc/udev/rules.d/ owner=root mode=0644
 
-- name: optimize_font_rendering
+- name: optimize_font_rendering_1
   copy: src=local.conf dest=/etc/fonts/ owner=root mode=0644
+
+- name: optimize_font_rendering_2
+  copy: "content='Xft.lcdfilter: lcddefault' dest=/home/edgard/.Xresources owner=edgard mode=0664"
 
 - name: enable_additional_services
   service: name={{ item }} enabled=yes state=started
