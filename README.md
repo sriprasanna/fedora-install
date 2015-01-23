@@ -1,120 +1,17 @@
-Fedora Configuration
-====================
+Install Fedora 21 Desktop
+-------------------------
 
-This is just a reminder repository for myself on how to install Fedora on some of my current setup while I don't create an Ansible playbook.
+On installation computer:
+> sudo systemctl start sshd
 
-### COMMON: Remove the need to enter sudo password
-    sudo sed -i 's/^#\s*\(%wheel\s\+ALL=(ALL)\s\+NOPASSWD:\s\+ALL\)/\1/' /etc/sudoers
-    sudo sed -i 's/^\s*\(%wheel\s\+ALL=(ALL)\s\+ALL\)/# \1/' /etc/sudoers
+On local computer:
+> ansible-playbook site.yml -k --tags "common" -i 'localhost,'
 
-### COMMON: Upgrade packages
-    sudo dnf upgrade -y
+**IMPORTANT: DO NOT FORGET THE COMMA AFTER THE HOST**
 
-### COMMON: Install Fedy
-    sudo sh -c "curl https://satya164.github.io/fedy/fedy-installer -o fedy-installer && chmod +x fedy-installer && ./fedy-installer"
-
-### COMMON: Run select Fedy tasks
-    sudo fedy -e rpmfusion_repos font_rendering google_chrome google_talkplugin media_codecs numix_themes config_selinux disk_io_scheduler
-
-### COMMON: Install base packages
-    sudo dnf install -y --nogpgcheck @c-development @development-tools @container-management @system-tools kernel-devel
-    sudo dnf install -y --nogpgcheck python-devel python-pip python-virtualenv
-
-### COMMON: Install additional software
-    sudo dnf install -y --nogpgcheck htop iotop lm_sensors mercurial smartmontools unrar autojump ansible go ddclient
-    sudo dnf install -y --nogpgcheck gnome-tweak-tool gimp rawtherapee calibre deja-dup texlive-scheme-small VirtualBox akmod-VirtualBox
-    sudo dnf install -y --nogpgcheck http://s.insynchq.com/builds/insync-1.1.3.32034-1.x86_64.rpm              # installs repo
-    sudo dnf install -y --nogpgcheck https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.rpm         # no repo
-    sudo dnf copr enable helber/atom && sudo dnf install -y --nogpgcheck atom
-    git clone https://github.com/sstephenson/rbenv.git ~/.rbenv && git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
     git clone git://github.com/eonpatapon/gnome-shell-extension-caffeine.git && mkdir -p ~/.local/share/gnome-shell/extensions && cp -r gnome-shell-extension-caffeine/caffeine@patapon.info ~/.local/share/gnome-shell/extensions && rm -rf gnome-shell-extension-caffeine
 
-### MBP: Install specific software and config
-    sudo dnf install -y --nogpgcheck akmod-wl tlp tlp-rdw
-    cat << EOF | sudo tee /etc/modprobe.d/blacklist.conf
-    blacklist bcm43xx
-    blacklist b43
-    blacklist b43legacy
-    blacklist bcma
-    blacklist brcmsmac
-    blacklist ssb
-    blacklist ndiswrapper
-    EOF
-    sudo sed -i 's/^WIFI_PWR_ON_BAT=5/WIFI_PWR_ON_BAT=1/' /etc/default/tlp
-    cat << EOF | sudo tee /etc/X11/xorg.conf.d/60-synaptics.conf
-    Section "InputClass"
-        Identifier "touchpad catchall"
-        Driver "synaptics"
-        MatchIsTouchpad "on"
-        MatchDevicePath "/dev/input/event*"
-        Option "SHMConfig" "on"
-        Option "PalmDetect" "on"
-        Option "PalmMinZ" "300"
-        Option "PalmMinWidth" "10"
-        Option "VertEdgeScroll" "off"
-        Option "HorizEdgeScroll" "off"
-        Option "CornerCoasting" "off"
-        Option "EdgeMotionUseAlways" "off"
-        Option "TapAndDragGesture" "off"
-        Option "HorizTwoFingerScroll" "1"
-        Option "VertScrollDelta" "200"
-        Option "HorizScrollDelta" "200"
-        Option "CoastingSpeed" "10"
-        Option "CoastingFriction" "10"
-        Option "ClickTime" "25"
-        Option "TouchpadOff" "0"
-        Option "FingerLow" "60"
-        Option "FingerHigh" "65"
-        Option "MinSpeed" "1"
-        Option "MaxSpeed" "1"
-        Option "AccelerationProfile" "2"
-        Option "ConstantDeceleration" "4"
-        Option "MaxTapTime" "200"
-        Option "MaxDoubleTapTime" "200"
-        Option "SingleTapTimeout" "100"
-        Option "MaxTapMove" "500"
-        Option "TapButton1" "1"
-        Option "TapButton2" "3"
-        Option "TapButton3" "2"
-    EndSection
-    EOF
-    cat << EOF | sudo tee /etc/udev/rules.d/99-disable-apple-ir.rules
-    ACTION=="add", ATTR{idVendor}=="05ac", ATTR{idProduct}=="8242", RUN+="/bin/sh -c 'echo 0 >/sys$DEVPATH/authorized'"
-    EOF
-    echo 'options hid_apple fnmode=2' | sudo tee /etc/modprobe.d/hid_apple.conf
-    sudo sed -i '/^GRUB_CMDLINE_LINUX=/ s/rhgb/i915.modeset=1 i915.enable_rc6=1 i915.enable_fbc=1 i915.lvds_downclock=1 i915.semaphores=1 libata.force=1:noncq irqpoll rhgb/' /etc/default/grub
-    sudo grub2-mkconfig -o /etc/grub2-efi.cfg
-
-### DESKTOP: Install specific software and config
-    sudo dnf install -y --nogpgcheck akmod-nvidia
-    cat << EOF | sudo tee /etc/X11/xorg.conf.d/20-nvidia.conf
-    Section "Device"
-        Identifier      "Device0"
-        Driver          "nvidia"
-        Option          "NoLogo" "true"
-        Option          "ModeDebug" "false"
-        Option          "Coolbits" "4"
-        Option          "TripleBuffer" "true"
-        Option          "TwinView" "false"
-        Option          "DynamicTwinView" "false"
-        Option          "Stereo" "0"
-        Option          "ExactModeTimingsDVI" "true"
-    EndSection
-
-    Section "Screen"
-        Identifier      "Screen0"
-        Device          "Device0"
-        Option          "VertRefresh" "DVI-I-2: 120; DVI-I-3: 60"
-        Option          "nvidiaXineramaInfoOrder" "DVI-I-2, DVI-I-3"
-    EndSection
-    EOF
-
-### COMMON: Enable additional services
-    sudo systemctl enable sshd
-    sudo systemctl enable docker
-    sudo systemctl enable ddclient
-
-### COMMON: GNOME configuration
+### Post-Install: GNOME configuration
     # settings
     dconf write /org/gnome/system/location/enabled true
     dconf write /org/gnome/desktop/datetime/automatic-timezone true
@@ -157,10 +54,5 @@ This is just a reminder repository for myself on how to install Fedora on some o
     dconf write /org/gnome/deja-dup/periodic-period 1
     dconf write /org/gnome/deja-dup/periodic true
 
-### COMMON: Atom packages
+### Post-Install: Atom packages
     apm install solarized-dark-ui autocomplete-plus autocomplete-paths atom-terminal sort-lines
-
-### COMMON: Finishing steps and cleanup
-    sudo akmods --force
-    sudo fedy -e rem_oldkernels
-    sudo dnf autoerase -y

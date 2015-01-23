@@ -1,0 +1,8 @@
+---
+# file: roles/macbook/vars/main.yml
+
+packages_drivers:
+  - ['akmod-wl']
+
+packages_misc:
+  - ['tlp', 'tlp-rdw']

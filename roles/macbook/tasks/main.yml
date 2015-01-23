@@ -1,0 +1,27 @@
+---
+# file: roles/macbook/tasks/main.yml
+
+- name: install_packages
+  yum: name={{ item }} state=installed disable_gpg_check=yes
+  with_flattened:
+    - packages_drivers
+    - packages_misc
+
+- name: install_config_blacklist_b43
+  copy: src=blacklist.conf dest=/etc/modprobe.d/ owner=root mode=0644
+
+- name: install_config_synaptics
+  copy: src=60-synaptics.conf dest=/etc/X11/xorg.conf.d/ owner=root mode=0644
+
+- name: disable_apple_remote
+  copy: content='ACTION=="add", ATTR{idVendor}=="05ac", ATTR{idProduct}=="8242", RUN+="/bin/sh -c \'echo 0 >/sys$DEVPATH/authorized\'"' dest=/etc/udev/rules.d/99-disable-apple-ir.rules owner=root mode=0644
+
+- name: disable_apple_fnkeys
+  copy: content='options hid_apple fnmode=2' dest=/etc/modprobe.d/hid_apple.conf owner=root mode=0644
+
+- name: disable_wifi_powersaving
+  replace: dest=/etc/default/tlp regexp='^WIFI_PWR_ON_BAT=5' replace='WIFI_PWR_ON_BAT=1'
+
+#- name: install_kernel_parameters_intel
+#  replace: dest=/etc/default/grub regexp='^GRUB_CMDLINE_LINUX=/ s/rhgb' replace='i915.modeset=1 i915.enable_rc6=1 i915.enable_fbc=1 i915.lvds_downclock=1 i915.semaphores=1 libata.force=1:noncq irqpoll rhgb'
+#  notify: update_grub

@@ -1,0 +1,5 @@
+---
+# file: roles/desktop/vars/main.yml
+
+packages_drivers:
+  - ['akmod-nvidia']

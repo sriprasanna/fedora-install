@@ -1,0 +1,10 @@
+---
+# file: roles/desktop/tasks/main.yml
+
+- name: install_packages
+  yum: name={{ item }} state=installed disable_gpg_check=yes
+  with_flattened:
+    - packages_drivers
+
+- name: install_config_nvidia
+  copy: src=20-nvidia.conf dest=/etc/X11/xorg.conf.d/ owner=root mode=0644

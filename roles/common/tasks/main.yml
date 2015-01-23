@@ -1,0 +1,52 @@
+---
+# file: roles/common/tasks/main.yml
+
+- name: enable_sudo_without_password
+  replace: dest=/etc/sudoers regexp='^#\s*(%wheel\s+ALL=\(ALL\)\s+NOPASSWD:\s+ALL)' replace='\1' validate='visudo -cf %s'
+- name: disable_sudo_with_password
+  replace: dest=/etc/sudoers regexp='^\s*(%wheel\s+ALL=\(ALL\)\s+ALL)' replace='# \1' validate='visudo -cf %s'
+
+- name: install_additional_repositories
+  copy: src={{ item }} dest=/etc/yum.repos.d/ owner=root mode=0644
+  with_fileglob:
+    - "*.repo"
+
+- name: update_all_packages
+  yum: name=* state=latest
+
+- name: install_packages
+  yum: name={{ item }} state=installed disable_gpg_check=yes
+  with_flattened:
+    - packages_bootstrap
+    - packages_misc
+    - packages_devel
+    - packages_codecs
+    - packages_xapps
+
+- name: install_user_rbenv
+  git: repo=https://github.com/sstephenson/rbenv.git version=master dest=/home/edgard/.rbenv
+  sudo_user: edgard
+
+- name: install_user_rubybuild
+  git: repo=https://github.com/sstephenson/ruby-build.git version=master dest=/home/edgard/.rbenv/plugins/ruby-build
+  sudo_user: edgard
+
+# - name: install_user_gnomeshell_extension_caffeine
+#   git: repo=https://github.com/eonpatapon/gnome-shell-extension-caffeine.git version=master dest=/home/edgard/.local/share/gnome-shell/extensions/caffeine@patapon.info
+#   sudo_user: edgard
+
+- name: set_selinux_permissive
+  replace: dest=/etc/selinux/config regexp='^SELINUX=(.*)' replace='SELINUX=permissive'
+
+- name: optimize_disk_io_schedulers
+  copy: src=60-io_schedulers.rules dest=/etc/udev/rules.d/ owner=root mode=0644
+
+- name: optimize_font_rendering
+  copy: src=local.conf dest=/etc/fonts/ owner=root mode=0644
+
+- name: enable_additional_services
+  service: name={{ item }} enabled=yes state=started
+  with_items:
+    - sshd
+    - docker
+    - ddclient

@@ -1,0 +1,8 @@
+[numix]
+name=Numix
+type=rpm-md
+baseurl=http://download.opensuse.org/repositories/home:/paolorotolo:/numix/Fedora_$releasever/
+gpgkey=http://download.opensuse.org/repositories/home:/paolorotolo:/numix/Fedora_$releasever/repodata/repomd.xml.key
+gpgcheck=1
+enabled=1
+skip_if_unavailable=1
