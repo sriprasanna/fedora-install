@@ -16,7 +16,6 @@ On local computer:
     dconf write /org/gnome/system/location/enabled true
     dconf write /org/gnome/desktop/datetime/automatic-timezone true
     dconf write /org/gtk/settings/file-chooser/clock-format "'12h'"
-    dconf write /org/gnome/desktop/interface/icon-theme "'Numix-Circle'"
     dconf write /org/gnome/settings-daemon/peripherals/touchpad/tap-to-click true
     dconf write /org/gnome/settings-daemon/peripherals/touchpad/disable-while-typing true
 
