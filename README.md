@@ -32,7 +32,7 @@ On local computer:
     dconf write /org/gnome/shell/overrides/dynamic-workspaces false
 
     # gnome-dock
-    dconf write /org/gnome/shell/favorite-apps "['google-chrome.desktop', 'chrome-clhhggbfdinjmjhajaheehoeibfljjno-Default.desktop', 'atom.desktop', 'chrome-hmjkmjkepdijhoojdojkdfohbdgmmhki-Default.desktop', 'gnome-terminal.desktop', 'org.gnome.Nautilus.desktop']"
+    dconf write /org/gnome/shell/favorite-apps "['google-chrome.desktop', 'telegramdesktop.desktop', 'chrome-https___web.whatsapp.com_.desktop', 'atom.desktop', 'chrome-hmjkmjkepdijhoojdojkdfohbdgmmhki-Default.desktop', 'gnome-terminal.desktop', 'org.gnome.Nautilus.desktop']"
 
     # gnome-terminal
     dconf write /org/gnome/terminal/legacy/new-terminal-mode "'tab'"
