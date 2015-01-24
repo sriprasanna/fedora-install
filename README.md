@@ -5,7 +5,7 @@ On installation computer:
 > sudo systemctl start sshd
 
 On local computer:
-> ansible-playbook site.yml -k --tags "common" -i 'localhost,'
+> ansible-playbook site.yml --tags "common,desktop" -i 'localhost,'
 
 **IMPORTANT: DO NOT FORGET THE COMMA AFTER THE HOST**
 

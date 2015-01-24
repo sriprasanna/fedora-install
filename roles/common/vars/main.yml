@@ -2,7 +2,7 @@
 # file: roles/common/vars/main.yml
 
 packages_bootstrap:
-  - ['yum-plugin-fastestmirror']
+  - ['yum-plugin-fastestmirror', 'fedora-repos-rawhide']
 
 packages_misc:
   - ['freetype-freeworld', 'htop', 'iotop', 'lm_sensors', 'smartmontools', 'unrar', 'autojump', 'ansible', 'ddclient', 'texlive-scheme-small']
