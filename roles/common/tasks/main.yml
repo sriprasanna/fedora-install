@@ -2,9 +2,10 @@
 # file: roles/common/tasks/main.yml
 
 - name: enable_sudo_without_password
-  replace: dest=/etc/sudoers regexp='^#\s*(%wheel\s+ALL=\(ALL\)\s+NOPASSWD:\s+ALL)' replace='\1' validate='visudo -cf %s'
+  replace: dest=/etc/sudoers regexp='^#\s*(%wheel\s+ALL=\(ALL\)\s+NOPASSWD:\s+ALL)' replace='\1'
+
 - name: disable_sudo_with_password
-  replace: dest=/etc/sudoers regexp='^\s*(%wheel\s+ALL=\(ALL\)\s+ALL)' replace='# \1' validate='visudo -cf %s'
+  replace: dest=/etc/sudoers regexp='^\s*(%wheel\s+ALL=\(ALL\)\s+ALL)' replace='# \1'
 
 - name: install_additional_repositories
   copy: src={{ item }} dest=/etc/yum.repos.d/ owner=root mode=0644
@@ -22,6 +23,7 @@
     - packages_devel
     - packages_codecs
     - packages_xapps
+    - packages_numix
 
 - name: install_user_rbenv
   git: repo=https://github.com/sstephenson/rbenv.git version=master dest=/home/edgard/.rbenv
@@ -36,7 +38,7 @@
 #   sudo_user: edgard
 
 - name: set_selinux_permissive
-  replace: dest=/etc/selinux/config regexp='^SELINUX=(.*)' replace='SELINUX=permissive'
+  replace: dest=/etc/sysconfig/selinux regexp='^(SELINUX=).*$' replace='\1permissive'
 
 - name: optimize_disk_io_schedulers
   copy: src=60-io_schedulers.rules dest=/etc/udev/rules.d/ owner=root mode=0644

@@ -25,6 +25,7 @@ On local computer:
     dconf write /org/gnome/shell/extensions/caffeine/show-notifications false
 
     # gnome-tweak-tools
+    dconf write /org/gnome/desktop/interface/icon-theme "'Numix-Circle'"
     dconf write /org/gnome/settings-daemon/plugins/xsettings/hinting "'slight'"
     dconf write /org/gnome/settings-daemon/plugins/xsettings/antialiasing "'rgba'"
     dconf write /org/gnome/desktop/interface/clock-show-date true
