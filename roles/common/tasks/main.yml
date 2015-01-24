@@ -25,6 +25,11 @@
     - packages_xapps
     - packages_numix
 
+- name: remove_packages
+  yum: name={{ item }} state=absent
+  with_flattened:
+    - packages_remove
+
 - name: install_user_rbenv
   git: repo=https://github.com/sstephenson/rbenv.git version=master dest=/home/edgard/.rbenv
   sudo_user: edgard
