@@ -57,10 +57,10 @@
 - name: optimize_disk_io_schedulers
   copy: src=60-io_schedulers.rules dest=/etc/udev/rules.d/ owner=root mode=0644
 
-- name: optimize_font_rendering_1
+- name: optimize_font_rendering_system
   copy: src=local.conf dest=/etc/fonts/ owner=root mode=0644
 
-- name: optimize_font_rendering_2
+- name: optimize_font_rendering_user
   copy: src=Xresources dest=/home/edgard/.Xresources owner=edgard mode=0664
 
 - name: enable_additional_services
