@@ -7,21 +7,30 @@
 - name: disable_sudo_with_password
   replace: dest=/etc/sudoers regexp='^\s*(%wheel\s+ALL=\(ALL\)\s+ALL)' replace='# \1'
 
-- name: install_additional_repositories
-  copy: src={{ item }} dest=/etc/yum.repos.d/ owner=root mode=0644
-  with_fileglob:
-    - "*.repo"
-
-- name: update_all_packages
-  yum: name=* state=latest disable_gpg_check=yes
-
 - name: remove_packages
   yum: name={{ item }} state=absent
   with_flattened:
     - packages_remove
 
+- name: install_additional_repositories
+  copy: src={{ item }} dest=/etc/yum.repos.d/ owner=root mode=0644
+  with_fileglob:
+    - "*.repo"
+
+- name: install_additional_repositories_keys
+  rpm_key: state=present key={{ item }}
+  with_items:
+    - 6446D859                                                                                              # rpmfusion-free
+    - A668B376                                                                                              # rpmfusion-nonfree
+    - https://dl-ssl.google.com/linux/linux_signing_key.pub                                                 # google-chrome
+    - https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key                                                  # insync
+    - http://download.opensuse.org/repositories/home:/paolorotolo:/numix/Fedora_21/repodata/repomd.xml.key  # numix
+
+- name: update_all_packages
+  yum: name=* state=latest
+
 - name: install_packages
-  yum: name={{ item }} state=installed disable_gpg_check=yes
+  yum: name={{ item }} state=installed
   with_flattened:
     - packages_bootstrap
     - packages_misc
