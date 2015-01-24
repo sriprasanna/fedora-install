@@ -2,7 +2,7 @@
 # file: roles/desktop/tasks/main.yml
 
 - name: install_packages
-  yum: name={{ item }} state=installed disable_gpg_check=yes
+  yum: name={{ item }} state=installed
   with_flattened:
     - packages_drivers
 
