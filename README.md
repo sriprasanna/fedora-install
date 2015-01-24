@@ -1,15 +1,12 @@
 Install Fedora 21 Desktop
 -------------------------
-
-On installation computer:
-> sudo systemctl start sshd
-
-On local computer:
+Example local run:
 > ansible-playbook site.yml --tags "common,desktop" -i 'localhost,'
 
-**IMPORTANT: DO NOT FORGET THE COMMA AFTER THE HOST**
+Example remote run - sshd must be started on remote:
+> ansible-playbook site.yml --tags "common,macbook" -i '192.168.25.107,' -k
 
-    git clone git://github.com/eonpatapon/gnome-shell-extension-caffeine.git && mkdir -p ~/.local/share/gnome-shell/extensions && cp -r gnome-shell-extension-caffeine/caffeine@patapon.info ~/.local/share/gnome-shell/extensions && rm -rf gnome-shell-extension-caffeine
+**IMPORTANT: DO NOT FORGET THE COMMA AFTER THE HOST**
 
 ### Post-Install: GNOME configuration
     # settings
