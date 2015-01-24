@@ -20,8 +20,8 @@
 - name: install_additional_repositories_keys
   rpm_key: state=present key={{ item }}
   with_items:
-    - http://pgp.mit.edu/pks/lookup?op=get&search=0x3C837D0D6446D859                                        # rpmfusion-free
-    - http://pgp.mit.edu/pks/lookup?op=get&search=0x017446D1A668B376                                        # rpmfusion-nonfree
+    - http://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-21        # rpmfusion-free
+    - http://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-21     # rpmfusion-nonfree
     - https://dl-ssl.google.com/linux/linux_signing_key.pub                                                 # google-chrome
     - https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key                                                  # insync
     - http://download.opensuse.org/repositories/home:/paolorotolo:/numix/Fedora_21/repodata/repomd.xml.key  # numix
