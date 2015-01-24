@@ -8,7 +8,7 @@ packages_misc:
   - ['freetype-freeworld', 'htop', 'iotop', 'lm_sensors', 'smartmontools', 'unrar', 'autojump', 'ansible', 'ddclient', 'texlive-scheme-small']
 
 packages_devel:
-  - ['@container-management', '@system-tools', '@development-tools', 'mercurial', '@c-development', 'kernel-devel', 'python-pip', 'python-virtualenv', 'golang']
+  - ['docker-io', 'subversion', 'mercurial', 'autoconf', 'automake', 'bison', 'flex', 'gcc', 'gcc-c++', 'libtool', 'strace', 'kernel-devel', 'python-pip', 'python-virtualenv', 'golang']
 
 packages_codecs:
   - ['amrnb', 'amrwb', 'faac', 'faad2', 'flac', 'gstreamer1-libav', 'gstreamer1-plugins-bad-freeworld', 'gstreamer1-plugins-ugly', 'gstreamer-ffmpeg', 'gstreamer-plugins-bad-nonfree', 'gstreamer-plugins-espeak', 'gstreamer-plugins-fc', 'gstreamer-plugins-ugly', 'gstreamer-rtsp', 'lame', 'libdca', 'libmad', 'libmatroska', 'x264', 'x265', 'xvidcore', 'gstreamer1-plugins-bad-free', 'gstreamer1-plugins-base', 'gstreamer1-plugins-good', 'gstreamer-plugins-bad', 'gstreamer-plugins-bad-free', 'gstreamer-plugins-base', 'gstreamer-plugins-good']
