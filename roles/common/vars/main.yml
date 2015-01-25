@@ -2,7 +2,7 @@
 # file: roles/common/vars/main.yml
 
 packages_remove:
-  - ['evolution', 'devassistant']
+  - ['evolution', 'devassistant', 'abrt', 'abrt-libs', 'abrt-gui-libs']
 
 packages_bootstrap:
   - ['yum-plugin-fastestmirror']

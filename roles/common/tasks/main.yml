@@ -11,6 +11,7 @@
   yum: name={{ item }} state=absent
   with_flattened:
     - packages_remove
+  notify: yum_autoremove
 
 - name: install_additional_repositories
   copy: src={{ item }} dest=/etc/yum.repos.d/ owner=root mode=0644
