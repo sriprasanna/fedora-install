@@ -4,7 +4,7 @@ Example local run:
 > ansible-playbook site.yml --tags "common,desktop" -i 'localhost,'
 
 Example remote run - sshd must be started on remote:
-> ansible-playbook site.yml --tags "common,macbook" -i '192.168.25.107,' -k
+> ansible-playbook site.yml --tags "common,macbook" -i '192.168.25.107,' -k -K
 
 **IMPORTANT: DO NOT FORGET THE COMMA AFTER THE HOST**
 
