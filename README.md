@@ -52,4 +52,5 @@ Example remote run - sshd must be started on remote:
     dconf write /org/gnome/deja-dup/periodic true
 
 ### Post-Install: Atom packages
-    apm install solarized-dark-ui autocomplete-plus autocomplete-paths atom-terminal sort-lines
+    apm install atom-beautify atom-terminal autocomplete-plus autocomplete-paths color-picker file-icons linter linter-pylint merge-conflicts minimap solarized-dark-ui sort-lines
+    sudo yum install pylint python-autopep8 nodejs-js-yaml
