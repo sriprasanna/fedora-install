@@ -8,7 +8,7 @@ packages_bootstrap:
   - ['yum-plugin-fastestmirror']
 
 packages_misc:
-  - ['freetype-freeworld', 'htop', 'iotop', 'lm_sensors', 'smartmontools', 'unrar', 'autojump', 'ansible', 'ddclient', 'texlive-scheme-small']
+  - ['freetype-freeworld', 'htop', 'iotop', 'lm_sensors', 'smartmontools', 'unrar', 'autojump', 'ansible', 'ddclient', 'texlive-scheme-small', 'aria2']
 
 packages_devel:
   - ['docker-io', 'subversion', 'mercurial', 'git', 'autoconf', 'automake', 'bison', 'flex', 'gcc', 'gcc-c++', 'libtool', 'strace', 'kernel-devel', 'python-pip', 'python-virtualenv', 'golang']
