@@ -1,5 +1,8 @@
 ---
 # file: roles/macbook/handlers/main.yml
 
+- name: update_initramfs
+  command: dracut --force
+
 - name: update_grub
   command: grub2-mkconfig -o /etc/grub2-efi.cfg
