@@ -2,10 +2,10 @@
 # file: roles/common/tasks/main.yml
 
 - name: enable_sudo_without_password
-  replace: dest=/etc/sudoers regexp='^#\s*(%wheel\s+ALL=\(ALL\)\s+NOPASSWD:\s+ALL)' replace='\1'
+  lineinfile: dest=/etc/sudoers regexp='^#\s*(%wheel\s+ALL=\(ALL\)\s+NOPASSWD:\s+ALL)$' line='\1' backrefs=yes
 
 - name: disable_sudo_with_password
-  replace: dest=/etc/sudoers regexp='^\s*(%wheel\s+ALL=\(ALL\)\s+ALL)' replace='# \1'
+  lineinfile: dest=/etc/sudoers regexp='^\s*(%wheel\s+ALL=\(ALL\)\s+ALL)$' line='# \1' backrefs=yes
 
 - name: remove_packages
   yum: name={{ item }} state=absent
@@ -53,7 +53,7 @@
 #   sudo_user: edgard
 
 - name: set_selinux_permissive
-  replace: dest=/etc/sysconfig/selinux regexp='^(SELINUX=).*$' replace='\1permissive'
+  lineinfile: dest=/etc/selinux/config regexp='^SELINUX=.*' line='SELINUX=permissive'
 
 - name: optimize_disk_io_schedulers
   copy: src=60-io_schedulers.rules dest=/etc/udev/rules.d/ owner=root mode=0644
