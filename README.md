@@ -1,10 +1,12 @@
 Install Fedora 21 Desktop
 -------------------------
+Available tags: **_desktop_**, **_macbook_**, **_htpc_**
+
 Example local run:
-> ansible-playbook site.yml --tags "common,desktop" -i 'localhost,'
+> ansible-playbook site.yml --tags "desktop" -i 'localhost,'
 
 Example remote run - sshd must be started on remote:
-> ansible-playbook site.yml --tags "common,macbook" -i '192.168.25.107,' -k -K
+> ansible-playbook site.yml --tags "macbook" -i '192.168.25.107,' -k -K
 
 **IMPORTANT: DO NOT FORGET THE COMMA AFTER THE HOST**
 
