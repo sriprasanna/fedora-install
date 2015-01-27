@@ -8,7 +8,7 @@ packages_bootstrap:
   - ['yum-plugin-fastestmirror']
 
 packages_misc:
-  - ['htop', 'iotop', 'lm_sensors', 'samba']
+  - ['htop', 'iotop', 'lm_sensors', 'samba', 'avahi']
 
 packages_devel:
   - ['kernel-devel']

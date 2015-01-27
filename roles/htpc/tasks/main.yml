@@ -61,5 +61,6 @@
     - docker
     - smb
     - nmb
+    - avahi-daemon
     - lircd
     - kodi
