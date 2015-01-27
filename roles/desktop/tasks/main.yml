@@ -8,3 +8,9 @@
 
 - name: install_config_nvidia
   copy: src=20-nvidia.conf dest=/etc/X11/xorg.conf.d/ owner=root mode=0644
+
+- name: install_config_sensors_1
+  copy: src=asusCVF.conf dest=/etc/sensors.d/ owner=root mode=0644
+
+- name: install_config_sensors_2
+  lineinfile: dest=/etc/sysconfig/lm_sensors line='HWMON_MODULES="it87"' create=yes owner=root mode=0644
