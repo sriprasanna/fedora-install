@@ -7,3 +7,4 @@
     - {role: common, tags: common}
     - {role: desktop, tags: desktop}
     - {role: macbook, tags: macbook}
+    - {role: htpc, tags: htpc}

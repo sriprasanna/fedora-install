@@ -1,0 +1,23 @@
+---
+# file: roles/htpc/vars/main.yml
+
+packages_remove:
+  - ['firewalld', 'firewalld-config-server', 'cockpit', 'abrt', 'abrt-libs']
+
+packages_bootstrap:
+  - ['yum-plugin-fastestmirror']
+
+packages_misc:
+  - ['htop', 'iotop', 'lm_sensors']
+
+packages_devel:
+  - ['kernel-devel']
+
+packages_xapps:
+  - ['kodi']
+
+packages_xdeps:
+  - ['xorg-x11-xinit', 'xorg-x11-drv-evdev', 'dbus-x11']
+
+packages_drivers:
+  - ['akmod-nvidia-340xx', 'libva-vdpau-driver', 'libva-utils', 'lirc', 'lirc-remotes', 'lirc-disable-kernel-rc']

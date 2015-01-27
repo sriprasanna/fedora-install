@@ -1,0 +1,5 @@
+---
+# file: roles/htpc/handlers/main.yml
+
+- name: yum_autoremove
+  command: yum autoremove -y
