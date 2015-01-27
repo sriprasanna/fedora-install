@@ -40,6 +40,9 @@
 - name: set_selinux_disabled
   lineinfile: dest=/etc/selinux/config regexp='^SELINUX=.*' line='SELINUX=disabled'
 
+- name: install_config_samba
+  copy: src=smb.conf dest=/etc/samba/ owner=root mode=0644
+
 - name: install_config_nvidia
   copy: src=20-nvidia.conf dest=/etc/X11/xorg.conf.d/ owner=root mode=0644
 
@@ -56,5 +59,7 @@
   with_items:
     - sshd
     - docker
+    - smb
+    - nmb
     - lircd
     - kodi
