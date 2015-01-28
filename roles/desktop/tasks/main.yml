@@ -5,6 +5,7 @@
   yum: name={{ item }} state=installed
   with_flattened:
     - packages_drivers
+  notify: yum_autoremove
 
 - name: install_config_nvidia
   copy: src=20-nvidia.conf dest=/etc/X11/xorg.conf.d/ owner=root mode=0644

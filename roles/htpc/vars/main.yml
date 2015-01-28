@@ -2,16 +2,10 @@
 # file: roles/htpc/vars/main.yml
 
 packages_remove:
-  - ['firewalld', 'firewalld-config-server', 'cockpit', 'abrt', 'abrt-libs']
-
-packages_bootstrap:
-  - ['yum-plugin-fastestmirror']
+  - ['firewalld', 'firewalld-config-server', 'cockpit']
 
 packages_misc:
-  - ['htop', 'iotop', 'lm_sensors', 'samba', 'avahi']
-
-packages_devel:
-  - ['kernel-devel']
+  - ['samba']
 
 packages_xapps:
   - ['kodi']

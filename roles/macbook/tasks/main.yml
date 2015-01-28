@@ -6,6 +6,7 @@
   with_flattened:
     - packages_drivers
     - packages_misc
+  notify: yum_autoremove
 
 - name: install_config_blacklist_b43
   copy: src=blacklist.conf dest=/etc/modprobe.d/ owner=root mode=0644

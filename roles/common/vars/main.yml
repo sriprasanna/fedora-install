@@ -2,22 +2,13 @@
 # file: roles/common/vars/main.yml
 
 packages_remove:
-  - ['evolution', 'devassistant', 'abrt', 'abrt-libs', 'abrt-gui-libs']
+  - ['abrt', 'abrt-libs']
 
 packages_bootstrap:
   - ['yum-plugin-fastestmirror']
 
 packages_misc:
-  - ['freetype-freeworld', 'htop', 'iotop', 'lm_sensors', 'smartmontools', 'unrar', 'autojump', 'ansible', 'ddclient', 'texlive-scheme-small', 'aria2']
+  - ['htop', 'iotop', 'lm_sensors', 'avahi']
 
 packages_devel:
-  - ['docker-io', 'subversion', 'mercurial', 'git', 'autoconf', 'automake', 'bison', 'flex', 'gcc', 'gcc-c++', 'libtool', 'strace', 'kernel-devel', 'python-pip', 'python-virtualenv', 'golang']
-
-packages_codecs:
-  - ['amrnb', 'amrwb', 'faac', 'faad2', 'flac', 'gstreamer1-libav', 'gstreamer1-plugins-bad-freeworld', 'gstreamer1-plugins-ugly', 'gstreamer-ffmpeg', 'gstreamer-plugins-bad-nonfree', 'gstreamer-plugins-espeak', 'gstreamer-plugins-fc', 'gstreamer-plugins-ugly', 'gstreamer-rtsp', 'lame', 'libdca', 'libmad', 'libmatroska', 'x264', 'x265', 'xvidcore', 'gstreamer1-plugins-bad-free', 'gstreamer1-plugins-base', 'gstreamer1-plugins-good', 'gstreamer-plugins-bad', 'gstreamer-plugins-bad-free', 'gstreamer-plugins-base', 'gstreamer-plugins-good']
-
-packages_xapps:
-  - ['gnome-tweak-tool', 'gimp', 'rawtherapee', 'calibre', 'deja-dup', 'akmod-VirtualBox', 'VirtualBox', 'google-chrome-stable', 'google-talkplugin', 'atom', 'insync-nautilus', 'california', 'mailnag']
-
-packages_numix:
-  - ['gtk-murrine-engine', 'numix-gtk-theme', 'numix-icon-theme', 'numix-icon-theme-circle']
+  - ['kernel-devel', 'subversion', 'mercurial', 'git']

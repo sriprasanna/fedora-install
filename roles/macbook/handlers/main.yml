@@ -1,6 +1,9 @@
 ---
 # file: roles/macbook/handlers/main.yml
 
+- name: yum_autoremove
+  command: yum autoremove -y
+
 - name: update_initramfs
   command: dracut --force
 

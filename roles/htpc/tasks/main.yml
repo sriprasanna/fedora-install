@@ -1,44 +1,20 @@
 ---
 # file: roles/htpc/tasks/main.yml
 
-- name: enable_sudo_without_password
-  lineinfile: dest=/etc/sudoers regexp='^#\s*(%wheel\s+ALL=\(ALL\)\s+NOPASSWD:\s+ALL)$' line='\g<1>' backrefs=yes
-
-- name: disable_sudo_with_password
-  lineinfile: dest=/etc/sudoers regexp='^\s*(%wheel\s+ALL=\(ALL\)\s+ALL)$' line='# \g<1>' backrefs=yes
-
 - name: remove_packages
   yum: name={{ item }} state=absent
   with_flattened:
     - packages_remove
   notify: yum_autoremove
 
-- name: install_additional_repositories
-  copy: src={{ item }} dest=/etc/yum.repos.d/ owner=root mode=0644
-  with_fileglob:
-    - "*.repo"
-
-- name: install_additional_repositories_keys
-  rpm_key: state=present key={{ item }}
-  with_items:
-    - http://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-21        # rpmfusion-free
-    - http://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-21     # rpmfusion-nonfree
-
-- name: update_all_packages
-  yum: name=* state=latest
-
 - name: install_packages
   yum: name={{ item }} state=installed
   with_flattened:
-    - packages_bootstrap
     - packages_misc
-    - packages_devel
     - packages_xapps
     - packages_xdeps
     - packages_drivers
-
-- name: set_selinux_disabled
-  lineinfile: dest=/etc/selinux/config regexp='^SELINUX=.*' line='SELINUX=disabled'
+  notify: yum_autoremove
 
 - name: install_config_samba
   copy: src=smb.conf dest=/etc/samba/ owner=root mode=0644
@@ -57,10 +33,8 @@
 - name: enable_additional_services
   service: name={{ item }} enabled=yes state=started
   with_items:
-    - sshd
-    - docker
+    - avahi-daemon
     - smb
     - nmb
-    - avahi-daemon
     - lircd
     - kodi

@@ -4,7 +4,8 @@
 - hosts: all
   sudo: true
   roles:
-    - {role: common, tags: ['desktop', 'macbook']}
+    - {role: common, tags: ['desktop', 'macbook', 'htpc']}
+    - {role: common-xenv, tags: ['desktop', 'macbook']}
     - {role: desktop, tags: desktop}
     - {role: macbook, tags: macbook}
     - {role: htpc, tags: htpc}

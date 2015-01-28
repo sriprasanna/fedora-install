@@ -1,0 +1,53 @@
+---
+# file: roles/common-xenv/tasks/main.yml
+
+- name: remove_packages
+  yum: name={{ item }} state=absent
+  with_flattened:
+    - packages_remove
+  notify: yum_autoremove
+
+- name: install_additional_repositories
+  copy: src={{ item }} dest=/etc/yum.repos.d/ owner=root mode=0644
+  with_fileglob:
+    - "*.repo"
+
+- name: install_additional_repositories_keys
+  rpm_key: state=present key={{ item }}
+  with_items:
+    - https://dl-ssl.google.com/linux/linux_signing_key.pub                                                 # google-chrome
+    - https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key                                                  # insync
+    - http://download.opensuse.org/repositories/home:/paolorotolo:/numix/Fedora_21/repodata/repomd.xml.key  # numix
+
+- name: install_packages
+  yum: name={{ item }} state=installed
+  with_flattened:
+    - packages_misc
+    - packages_devel
+    - packages_codecs
+    - packages_xapps
+    - packages_numix
+  notify: yum_autoremove
+
+- name: install_user_rbenv
+  git: repo=https://github.com/sstephenson/rbenv.git version=master dest=/home/edgard/.rbenv
+  sudo_user: edgard
+
+- name: install_user_rubybuild
+  git: repo=https://github.com/sstephenson/ruby-build.git version=master dest=/home/edgard/.rbenv/plugins/ruby-build
+  sudo_user: edgard
+
+# - name: install_user_gnomeshell_extension_caffeine
+#   git: repo=https://github.com/eonpatapon/gnome-shell-extension-caffeine.git version=master dest=/home/edgard/.local/share/gnome-shell/extensions/caffeine@patapon.info
+#   sudo_user: edgard
+
+- name: optimize_font_rendering_system
+  copy: src=local.conf dest=/etc/fonts/ owner=root mode=0644
+
+- name: optimize_font_rendering_user
+  copy: src=Xresources dest=/home/edgard/.Xresources owner=edgard mode=0664
+
+- name: enable_additional_services
+  service: name={{ item }} enabled=yes state=started
+  with_items:
+    - ddclient
