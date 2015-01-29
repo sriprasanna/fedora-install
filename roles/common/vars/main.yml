@@ -5,7 +5,7 @@ packages_remove:
   - ['abrt', 'abrt-libs']
 
 packages_bootstrap:
-  - ['yum-plugin-fastestmirror']
+  - ['yum-plugin-fastestmirror', 'fedup', 'rpmconf']
 
 packages_misc:
   - ['htop', 'iotop', 'lm_sensors', 'avahi']
