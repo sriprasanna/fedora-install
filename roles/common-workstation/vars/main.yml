@@ -1,5 +1,5 @@
 ---
-# file: roles/common-xenv/vars/main.yml
+# file: roles/common-workstation/vars/main.yml
 
 packages_remove:
   - ['evolution', 'devassistant', 'abrt-gui-libs']

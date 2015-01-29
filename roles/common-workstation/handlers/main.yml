@@ -1,5 +1,5 @@
 ---
-# file: roles/common-xenv/handlers/main.yml
+# file: roles/common-workstation/handlers/main.yml
 
 - name: yum_autoremove
   command: yum autoremove -y

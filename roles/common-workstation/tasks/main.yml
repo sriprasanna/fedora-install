@@ -1,5 +1,5 @@
 ---
-# file: roles/common-xenv/tasks/main.yml
+# file: roles/common-workstation/tasks/main.yml
 
 - name: remove_packages
   yum: name={{ item }} state=absent
