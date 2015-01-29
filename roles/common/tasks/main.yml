@@ -46,4 +46,3 @@
   service: name={{ item }} enabled=yes state=started
   with_items:
     - sshd
-    - docker
