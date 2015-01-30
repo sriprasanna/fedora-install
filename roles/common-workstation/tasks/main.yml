@@ -23,7 +23,6 @@
   yum: name={{ item }} state=installed
   with_flattened:
     - packages_misc
-    - packages_devel
     - packages_codecs
     - packages_xapps
     - packages_numix
@@ -50,5 +49,4 @@
 - name: enable_additional_services
   service: name={{ item }} enabled=yes state=started
   with_items:
-    - docker
     - ddclient
