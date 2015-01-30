@@ -47,3 +47,6 @@
   with_items:
     - sshd
     - docker
+
+- name: add_user_to_docker_group
+  user: name=edgard groups=docker append=yes
