@@ -1,0 +1,4 @@
+---
+# file: roles/htpc/meta/site.yml
+
+dependencies: { common }
