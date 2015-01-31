@@ -2,7 +2,7 @@
 # file: roles/common-workstation/vars/main.yml
 
 packages_remove:
-  - ['evolution', 'devassistant', 'abrt-gui-libs']
+  - ['evolution', 'devassistant', 'abrt-gui-libs', 'setroubleshoot', 'setroubleshoot-server']
 
 packages_misc:
   - ['freetype-freeworld', 'smartmontools', 'unrar', 'autojump', 'ansible', 'ddclient', 'texlive-scheme-small', 'aria2']
