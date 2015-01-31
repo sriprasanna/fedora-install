@@ -1,6 +1,0 @@
-[helber-atom]
-name=Copr repo for atom owned by helber
-baseurl=https://copr-be.cloud.fedoraproject.org/results/helber/atom/fedora-$releasever-$basearch/
-skip_if_unavailable=True
-gpgcheck=0
-enabled=1
