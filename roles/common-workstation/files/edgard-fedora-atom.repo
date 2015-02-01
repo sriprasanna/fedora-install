@@ -1,0 +1,7 @@
+[edgard-atom]
+name=Atom Editor Unofficial RPM
+baseurl=http://dl.edgard.org/repos/yum/atom/Fedora/$releasever/$basearch/
+gpgkey=http://dl.edgard.org/repos/yum/atom/Fedora/$releasever/$basearch/repodata/repomd.xml.key
+gpgcheck=1
+enabled=1
+skip_if_unavailable=1

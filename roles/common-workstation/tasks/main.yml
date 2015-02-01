@@ -18,6 +18,7 @@
     - https://dl-ssl.google.com/linux/linux_signing_key.pub                                                 # google-chrome
     - https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key                                                  # insync
     - http://download.opensuse.org/repositories/home:/paolorotolo:/numix/Fedora_21/repodata/repomd.xml.key  # numix
+    - http://dl.edgard.org/repos/yum/atom/Fedora/21/x86_64/repodata/repomd.xml.key                          # atom
 
 - name: install_packages
   yum: name={{ item }} state=installed
