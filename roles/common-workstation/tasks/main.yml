@@ -5,6 +5,7 @@
   yum: name={{ item }} state=absent
   with_flattened:
     - packages_remove
+    - packages_remove_old
   notify: yum_autoremove
 
 - name: install_additional_repositories
