@@ -1,6 +1,0 @@
----
-# file: roles/desktop/meta/site.yml
-
-dependencies:
-  - { role: common }
-  - { role: common-workstation }

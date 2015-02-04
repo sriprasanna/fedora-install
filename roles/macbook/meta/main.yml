@@ -1,6 +1,0 @@
----
-# file: roles/macbook/meta/site.yml
-
-dependencies:
-  - { role: common }
-  - { role: common-workstation }
