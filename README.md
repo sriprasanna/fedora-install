@@ -32,7 +32,7 @@ Example remote run - sshd must be started on remote:
     dconf write /org/gnome/shell/overrides/dynamic-workspaces false
 
     # gnome-dock
-    dconf write /org/gnome/shell/favorite-apps "['google-chrome.desktop', 'chrome-clhhggbfdinjmjhajaheehoeibfljjno-Default.desktop', 'chrome-bgkodfmeijboinjdegggmkbkjfiagaan-Default.desktop', 'chrome-mojepfklcankkmikonjlnidiooanmpbb-Default.desktop', 'chrome-hmjkmjkepdijhoojdojkdfohbdgmmhki-Default.desktop', 'atom.desktop', 'gnome-terminal.desktop', 'org.gnome.Nautilus.desktop']"
+    dconf write /org/gnome/shell/favorite-apps "['google-chrome.desktop', 'chrome-clhhggbfdinjmjhajaheehoeibfljjno-Default.desktop', 'chrome-bgkodfmeijboinjdegggmkbkjfiagaan-Default.desktop', 'chrome-hmjkmjkepdijhoojdojkdfohbdgmmhki-Default.desktop', 'atom.desktop', 'gnome-terminal.desktop', 'org.gnome.Nautilus.desktop']"
 
     # gnome-terminal
     dconf write /org/gnome/terminal/legacy/new-terminal-mode "'tab'"
