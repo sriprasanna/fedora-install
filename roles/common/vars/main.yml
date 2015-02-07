@@ -11,4 +11,4 @@ packages_misc:
   - ['htop', 'iotop', 'lm_sensors', 'avahi']
 
 packages_devel:
-  - ['docker-io', 'kernel-devel', 'subversion', 'mercurial', 'git', 'autoconf', 'automake', 'bison', 'flex', 'gcc', 'gcc-c++', 'libtool', 'strace', 'ruby', 'ruby-devel']
+  - ['docker-io', 'kernel-devel', 'subversion', 'mercurial', 'git', 'autoconf', 'automake', 'bison', 'flex', 'gcc', 'gcc-c++', 'libtool', 'strace']

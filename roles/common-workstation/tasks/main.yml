@@ -30,14 +30,6 @@
     - packages_numix
   notify: yum_autoremove
 
-- name: install_user_rbenv
-  git: repo=https://github.com/sstephenson/rbenv.git version=master dest=/home/edgard/.rbenv
-  sudo_user: edgard
-
-- name: install_user_rubybuild
-  git: repo=https://github.com/sstephenson/ruby-build.git version=master dest=/home/edgard/.rbenv/plugins/ruby-build
-  sudo_user: edgard
-
 # - name: install_user_gnomeshell_extension_caffeine
 #   git: repo=https://github.com/eonpatapon/gnome-shell-extension-caffeine.git version=master dest=/home/edgard/.local/share/gnome-shell/extensions/caffeine@patapon.info
 #   sudo_user: edgard
