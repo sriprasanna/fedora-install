@@ -5,7 +5,7 @@ packages_remove:
   - ['evolution', 'devassistant', 'abrt-gui-libs', 'setroubleshoot', 'setroubleshoot-server']
 
 packages_remove_old:
-  - ['california']
+  - ['california', 'texlive-scheme-small']
 
 packages_misc:
   - ['freetype-freeworld', 'smartmontools', 'unrar', 'autojump', 'ansible', 'ddclient', 'aria2']
