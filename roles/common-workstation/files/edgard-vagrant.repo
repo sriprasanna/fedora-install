@@ -1,0 +1,6 @@
+[edgard-vagrant]
+name=Vagrant Unofficial Yum Repository
+baseurl=http://dl.edgard.org/repos/yum/vagrant/$basearch/
+gpgcheck=0
+enabled=1
+skip_if_unavailable=1
