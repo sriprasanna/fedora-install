@@ -8,7 +8,7 @@ packages_bootstrap:
   - ['yum-plugin-fastestmirror', 'fedup', 'rpmconf']
 
 packages_misc:
-  - ['htop', 'iotop', 'lm_sensors', 'avahi', 'screen']
+  - ['htop', 'iotop', 'lm_sensors', 'avahi']
 
 packages_devel:
   - ['docker-io', 'kernel-devel', 'subversion', 'mercurial', 'git', 'autoconf', 'automake', 'bison', 'flex', 'gcc', 'gcc-c++', 'libtool', 'strace']
