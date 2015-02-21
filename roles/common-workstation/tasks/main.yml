@@ -30,14 +30,14 @@
   notify: yum_autoremove
 
 # - name: install_user_gnomeshell_extension_caffeine
-#   git: repo=https://github.com/eonpatapon/gnome-shell-extension-caffeine.git version=master dest=/home/edgard/.local/share/gnome-shell/extensions/caffeine@patapon.info
-#   sudo_user: edgard
+#   git: repo=https://github.com/eonpatapon/gnome-shell-extension-caffeine.git version=master dest=/home/{{ default_user }}/.local/share/gnome-shell/extensions/caffeine@patapon.info
+#   sudo_user: {{ default_user }}
 
 - name: optimize_font_rendering_system
   copy: src=local.conf dest=/etc/fonts/ owner=root mode=0644
 
 - name: optimize_font_rendering_user
-  copy: src=Xresources dest=/home/edgard/.Xresources owner=edgard mode=0664
+  copy: src=Xresources dest=/home/{{ default_user }}/.Xresources owner={{ default_user }} mode=0664
 
 - name: enable_additional_services
   service: name={{ item }} enabled=yes state=started

@@ -1,0 +1,4 @@
+---
+# file: group_vars/all
+
+default_user: edgard
