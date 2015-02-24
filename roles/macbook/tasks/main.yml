@@ -21,7 +21,7 @@
   lineinfile: dest=/etc/default/tlp regexp='^WIFI_PWR_ON_BAT=.*' line='WIFI_PWR_ON_BAT=1'
 
 - name: add_kernel_parameters
-  lineinfile: dest=/etc/default/grub regexp='^GRUB_CMDLINE_LINUX=(?!.*i915.*)(.*)(rhgb.*)' line='GRUB_CMDLINE_LINUX=\g<1>i915.modeset=1 i915.enable_rc6=1 i915.enable_fbc=1 i915.lvds_downclock=1 i915.semaphores=1 irqpoll hid_apple.fnmode=2 \g<2>' backrefs=yes
+  lineinfile: dest=/etc/default/grub regexp='^GRUB_CMDLINE_LINUX=(?!.*i915.*)(.*)(rhgb.*)' line='GRUB_CMDLINE_LINUX=\g<1>i915.modeset=1 i915.enable_rc6=1 i915.enable_fbc=1 i915.lvds_downclock=1 i915.semaphores=1 hid_apple.fnmode=2 \g<2>' backrefs=yes
   notify:
     - update_initramfs
     - update_grub
