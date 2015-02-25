@@ -39,6 +39,9 @@
 - name: optimize_font_rendering_user
   copy: src=Xresources dest=/home/{{ default_user }}/.Xresources owner={{ default_user }} group={{ default_user }} mode=0664
 
+- name: change_to_zsh
+  user: name={{ default_user }} shell=/usr/bin/zsh
+
 - name: enable_additional_services
   service: name={{ item }} enabled=yes state=started
   with_items:
