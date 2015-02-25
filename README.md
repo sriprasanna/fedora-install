@@ -1,12 +1,18 @@
-Install Fedora 21 Desktop
+Install Fedora 21
 -------------------------
-Available tags: **_desktop_**, **_macbook_**, **_htpc_**
+First time:
+> sudo su -
+> ssh-keygen -t rsa -C "root"
+> cat ~/.ssh/id_rsa.pub > ~/.ssh/authorized_keys
+> chmod 600 ~/.ssh/authorized_keys
 
-Example local run:
-> ansible-playbook site.yml --tags "desktop" -i 'localhost,'
+Available tags: **_macbook_**
+
+Example local run (also for updates):
+> sudo ansible-playbook /path/to/ansible/folder/site.yml --tags "macbook" -i 'localhost,'
 
 Example remote run - sshd must be started on remote:
-> ansible-playbook site.yml --tags "macbook" -i '192.168.25.107,' -k -K
+> sudo ansible-playbook /path/to/ansible/folder/site.yml --tags "macbook" -i '192.168.25.107,' -k -K
 
 **IMPORTANT: DO NOT FORGET THE COMMA AFTER THE HOST**
 
