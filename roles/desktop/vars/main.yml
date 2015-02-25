@@ -1,5 +1,0 @@
----
-# file: roles/desktop/vars/main.yml
-
-packages_drivers:
-  - ['kmod-nvidia', 'libva-vdpau-driver', 'libva-utils']

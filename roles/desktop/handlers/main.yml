@@ -1,5 +1,0 @@
----
-# file: roles/desktop/handlers/main.yml
-
-- name: yum_autoremove
-  command: yum autoremove -y
