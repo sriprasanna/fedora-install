@@ -1,6 +1,0 @@
-[edgard-atom]
-name=Atom Editor Unofficial Yum Repository
-baseurl=http://dl.edgard.org/repos/yum/atom/$basearch/
-gpgcheck=0
-enabled=1
-skip_if_unavailable=1
