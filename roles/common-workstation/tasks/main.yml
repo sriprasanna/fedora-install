@@ -37,7 +37,7 @@
   copy: src=local.conf dest=/etc/fonts/ owner=root mode=0644
 
 - name: optimize_font_rendering_user
-  copy: src=Xresources dest=/home/{{ default_user }}/.Xresources owner={{ default_user }} mode=0664
+  copy: src=Xresources dest=/home/{{ default_user }}/.Xresources owner={{ default_user }} group={{ default_user }} mode=0664
 
 - name: enable_additional_services
   service: name={{ item }} enabled=yes state=started

@@ -32,7 +32,13 @@ Example remote run - sshd must be started on remote:
     dconf write /org/gnome/shell/overrides/dynamic-workspaces false
 
     # gnome-dock
-    dconf write /org/gnome/shell/favorite-apps "['google-chrome.desktop', 'chrome-clhhggbfdinjmjhajaheehoeibfljjno-Default.desktop', 'chrome-bgkodfmeijboinjdegggmkbkjfiagaan-Default.desktop', 'chrome-hmjkmjkepdijhoojdojkdfohbdgmmhki-Default.desktop', 'atom.desktop', 'terminator.desktop', 'org.gnome.Nautilus.desktop']"
+    dconf write /org/gnome/shell/favorite-apps "['google-chrome.desktop', 'chrome-clhhggbfdinjmjhajaheehoeibfljjno-Default.desktop', 'chrome-bgkodfmeijboinjdegggmkbkjfiagaan-Default.desktop', 'chrome-hmjkmjkepdijhoojdojkdfohbdgmmhki-Default.desktop', 'atom.desktop', 'gnome-terminal.desktop', 'org.gnome.Nautilus.desktop']"
+
+    # gnome-terminal
+    dconf write /org/gnome/terminal/legacy/new-terminal-mode "'tab'"
+    dconf write "/org/gnome/terminal/legacy/profiles:/$(dconf list /org/gnome/terminal/legacy/profiles:/ | sed s/^\'// | sed s/\'$//)use-system-font" false
+    dconf write "/org/gnome/terminal/legacy/profiles:/$(dconf list /org/gnome/terminal/legacy/profiles:/ | sed s/^\'// | sed s/\'$//)font" "'PragmataPro 12'"
+    dconf write "/org/gnome/terminal/legacy/profiles:/$(dconf list /org/gnome/terminal/legacy/profiles:/ | sed s/^\'// | sed s/\'$//)login-shell" true
 
 ### Post-Install: Atom packages
     apm install atom-beautify autocomplete-plus autocomplete-paths color-picker linter linter-pylint linter-js-yaml merge-conflicts sort-lines terminal-panel
