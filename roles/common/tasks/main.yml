@@ -33,7 +33,6 @@
   with_flattened:
     - packages_bootstrap
     - packages_misc
-    - packages_devel
   notify: yum_autoremove
 
 - name: set_selinux_disabled

@@ -2,7 +2,7 @@
 # file: roles/macbook/vars/main.yml
 
 packages_drivers:
-  - ['akmod-wl']
+  - ['kmod-wl']
 
 packages_misc:
   - ['tlp', 'tlp-rdw']

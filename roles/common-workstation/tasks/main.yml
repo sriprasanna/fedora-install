@@ -24,6 +24,7 @@
   yum: name={{ item }} state=installed
   with_flattened:
     - packages_misc
+    - packages_devel
     - packages_codecs
     - packages_xapps
     - packages_numix
