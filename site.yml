@@ -4,8 +4,6 @@
 - hosts: all
   sudo: true
   roles:
-    - {role: common, tags: ['common', 'desktop', 'macbook', 'htpc']}
-    - {role: common-workstation, tags: ['desktop', 'macbook']}
-    - {role: desktop, tags: desktop}
+    - {role: common, tags: ['common', 'macbook']}
+    - {role: common-workstation, tags: macbook}
     - {role: macbook, tags: macbook}
-    - {role: htpc, tags: htpc}

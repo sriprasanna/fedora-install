@@ -1,4 +1,4 @@
 ---
 # file: group_vars/all
 
-default_user: edgard
+default_user: snark
