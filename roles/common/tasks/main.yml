@@ -1,11 +1,11 @@
 ---
 # file: roles/common/tasks/main.yml
 
-- name: enable_sudo_without_password
-  lineinfile: dest=/etc/sudoers regexp='^#\s*(%wheel\s+ALL=\(ALL\)\s+NOPASSWD:\s+ALL)$' line='\g<1>' backrefs=yes
+#- name: enable_sudo_without_password
+#  lineinfile: dest=/etc/sudoers regexp='^#\s*(%wheel\s+ALL=\(ALL\)\s+NOPASSWD:\s+ALL)$' line='\g<1>' backrefs=yes
 
-- name: disable_sudo_with_password
-  lineinfile: dest=/etc/sudoers regexp='^\s*(%wheel\s+ALL=\(ALL\)\s+ALL)$' line='# \g<1>' backrefs=yes
+#- name: disable_sudo_with_password
+#  lineinfile: dest=/etc/sudoers regexp='^\s*(%wheel\s+ALL=\(ALL\)\s+ALL)$' line='# \g<1>' backrefs=yes
 
 - name: remove_packages
   yum: name={{ item }} state=absent
@@ -45,4 +45,3 @@
   service: name={{ item }} enabled=yes state=started
   with_items:
     - sshd
-    - docker
