@@ -42,7 +42,13 @@
 - name: change_to_zsh
   user: name={{ default_user }} shell=/usr/bin/zsh
 
+- name: bootstrap_postgres
+  shell: postgresql-setup initdb
+
 - name: enable_additional_services
   service: name={{ item }} enabled=yes state=started
   with_items:
     - ddclient
+    - redis
+    - elasticsearch
+    - postgresql
