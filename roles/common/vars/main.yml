@@ -8,4 +8,4 @@ packages_bootstrap:
   - ['yum-plugin-fastestmirror', 'fedup', 'rpmconf']
 
 packages_misc:
-  - ['docker-io', 'htop', 'iotop', 'lm_sensors', 'avahi', 'tmux']
+  - ['docker-io', 'htop', 'iotop', 'iftop', 'lm_sensors', 'avahi', 'tmux']
