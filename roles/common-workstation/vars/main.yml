@@ -8,7 +8,7 @@ packages_remove_old:
   - ['california', 'texlive-scheme-small']
 
 packages_misc:
-  - ['freetype-freeworld', 'smartmontools', 'unrar', 'autojump', 'ansible', 'ddclient', 'aria2', 'vagrant', 'vim', 'ack', 'pass', '']
+  - ['freetype-freeworld', 'smartmontools', 'unrar', 'autojump', 'ansible', 'ddclient', 'aria2', 'vagrant', 'vim', 'ack', 'pass']
 
 packages_devel:
   - ['git', 'gcc', 'gcc-c++', 'kernel-devel', 'libtool', 'python-devel', 'python-pip', 'python-virtualenv', 'zsh', 'java-1.8.0-openjdk-devel', 'elasticsearch', 'redis', 'postgresql-server', 'postgresql-contrib', 'nodejs', 'npm']
