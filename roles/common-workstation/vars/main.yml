@@ -2,7 +2,7 @@
 # file: roles/common-workstation/vars/main.yml
 
 packages_remove:
-  - ['evolution', 'devassistant', 'abrt-gui-libs', 'setroubleshoot', 'setroubleshoot-server']
+  - ['evolution', 'devassistant', 'abrt-gui-libs', 'setroubleshoot', 'setroubleshoot-server', 'xorg-x11-drv-nouveau']
 
 packages_remove_old:
   - ['california', 'texlive-scheme-small']
